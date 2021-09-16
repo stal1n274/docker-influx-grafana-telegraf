@@ -1,0 +1,4 @@
+data/grafana/csv
+data/grafana/plugins
+data/grafana/png
+data/influxdb

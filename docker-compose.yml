@@ -1,0 +1,37 @@
+version: "3.3"
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: monitoring_grafana
+    restart: unless-stopped
+    links:
+      - influxdb:influxdb
+    volumes:
+      - ./data/grafana:/var/lib/grafana
+    ports:
+      - 3000:3000
+
+  influxdb:
+    image: influxdb:1.8
+    container_name: monitoring_influxdb
+    restart: unless-stopped
+    volumes:
+      - ./data/influxdb:/var/lib/influxdb
+    expose:
+      - 8086
+    ports:
+      - 8086:8086
+
+  telegraf:
+    image: telegraf:1.16
+    container_name: monitoring_telegraf
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    links:
+      - influxdb
+    ports:
+      - "8092:8092/udp"
+      - "8094:8094"
+      - "8125:8125/udp"
