@@ -26,7 +26,7 @@ You can find server metrics dashboard in `dashboards` -> `manage` -> `general` l
 ```
 Host		Container		Service
 
-3000		3003			grafana
+3000		3000			grafana
 8086		8086			influxdb
 
 8092		8092/udp		telegraf
