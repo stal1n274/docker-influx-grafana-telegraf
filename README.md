@@ -4,8 +4,8 @@ Monitoring service for easy server metrics logging
 ## Quick Start
 
 ```
-sudo chmod 777 data/grafana/*
-docker-compose up --build
+sudo chmod -R 777 data
+docker-compose up --build -d
 ```
 
 ## Grafana
@@ -45,3 +45,5 @@ Port: 8086
 
 1. Establish a ssh connection with the container
 2. Launch `influx` to open InfluxDB Shell (CLI)
+3. `SHOW MEASUREMENTS ON telegraf`
+
